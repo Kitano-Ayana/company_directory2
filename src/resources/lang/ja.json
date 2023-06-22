@@ -1,3 +1,8 @@
 {
-    "Login": "ログイン"
+    "Login": "ログイン",
+    "Name": "名前",
+    "Email Address": "メールアドレス",
+    "Password": "パスワード",
+    "Confirm Password": "パスワード（確認用）",
+    "Register":"登録"
 }

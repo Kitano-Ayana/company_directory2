@@ -4,17 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
         'email',
         'phone_number',
         'department_id',
-        'employee_number'
+        'employee_number',
+        'password'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function department()
@@ -40,6 +48,11 @@ class Employee extends Model
     public function canEditEmployees()
     {
         return $this->isHRleader();
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'employee_number';
     }
 
 }
