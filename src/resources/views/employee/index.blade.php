@@ -13,7 +13,13 @@
                 <input type="text" class="form-control" placeholder="Employee Number" name="employee_number">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Department" name="department">
+            <label for="department">Department</label>
+    <select class="form-control" id="department" name="department">
+        <option value="">Select department</option>
+        @foreach($departments as $department)
+            <option value="{{ $department->id }}">{{ $department->name }}</option>
+        @endforeach
+    </select>
             </div>
             <div class="col">
                 <button type="submit" class="btn btn-primary">Search</button>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\ValueObjects\EmployeeNumber;
 
 class Employee extends Authenticatable
 {
@@ -53,6 +54,11 @@ class Employee extends Authenticatable
     public function getAuthIdentifierName()
     {
         return 'employee_number';
+    }
+
+    public function setNumberAttribute(EmployeeNumber $employeeNumber)
+    {
+        $this->attributes['number'] = (string) $employeeNumber;
     }
 
 }

@@ -21,7 +21,9 @@ use App\Http\Controllers\EmployeeController;
 
 // Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::get('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
 // });    
 
 Auth::routes();
