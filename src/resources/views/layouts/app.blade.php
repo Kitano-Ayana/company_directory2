@@ -22,12 +22,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/employees">
+                            <a class="nav-link" href="{{ route('employee.index') }}">
                                 従業員
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('employee.index') }}" >
+                            <a class="nav-link" href="" >
                                 部署
                             </a>
                         </li>
