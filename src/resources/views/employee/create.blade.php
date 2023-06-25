@@ -14,8 +14,24 @@
             </div>
 
             <div class="form-group">
-                <label for="employee_number">従業員番号:</label>
-                <input type="text" class="form-control" id="employee_number" name="employee_number" required>
+                <label for="email">メールアドレス</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_number">電話番号:</label>
+                <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="join_year">入社年</label>
+                    <select class="form-control" id="join_year" name="join_year">
+                        @for ($year = 2020; $year <= 2025; $year++)
+                            <option value="{{ $year }}" {{ old('join_year') == $year ? 'selected' : '' }}>
+                                {{ $year }}
+                            </option>
+                        @endfor
+                    </select>
             </div>
 
             <div class="form-group">
@@ -26,6 +42,11 @@
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">初期パスワード</label>
+                <input type="password" class="form-control" id="password" name="password">
             </div>
 
             <div class="form-group">

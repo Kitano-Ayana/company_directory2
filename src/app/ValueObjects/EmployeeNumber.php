@@ -1,11 +1,8 @@
 <?php
-
 namespace App\ValueObjects;
 
 class EmployeeNumber
 {
-    private $value;
-
     private string $number;
 
     public function __construct(string $year, string $departmentId, string $uniqueNumber)
@@ -17,6 +14,4 @@ class EmployeeNumber
     {
         return $this->number;
     }
-
-    
-}    
+}

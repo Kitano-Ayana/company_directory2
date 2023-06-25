@@ -23,7 +23,7 @@ use App\Http\Controllers\EmployeeController;
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.index');
     Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
-    Route::get('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
 // });    
 
 Auth::routes();
