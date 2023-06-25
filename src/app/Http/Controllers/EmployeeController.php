@@ -65,5 +65,39 @@ class EmployeeController extends Controller
         
 
     }
+
+    public function edit($id)
+    {
+        $employee = Employee::find($id);
+        $departments = Department::all();
+
+        return view('employee.edit', [
+            'employee' => $employee,
+            'departments' => $departments,
+        ]);
+    }
+
+    public function update(Request $request, Employee $employee)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'department' => 'required|exists:departments,id',
+        ]);
+
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->phone_number = $request->phone_number;
+        $employee->department_id = $request->department;
+
+    
+        $employee->save();
+
+    
+        return redirect()->route('employee.index');
+    
+    }
 }
 

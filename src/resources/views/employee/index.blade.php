@@ -50,9 +50,9 @@
                     <th scope="row">{{ $employee->id }}</th>
                     <td>{{ $employee->name }}</td>
                     <td>{{ $employee->employee_number }}</td>
-                    <td>{{ $employee->department }}</td>
+                    <td>{{ $employee->department->name }}</td>
                     <td>
-                        <a href="/employees/{{ $employee->id }}/edit" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('employee.edit', ['id' => $employee->id]) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach
