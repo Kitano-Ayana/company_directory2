@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Department;
+use App\ValueObjects\EmployeeNumber;
 
 
 class EmployeeController extends Controller
@@ -24,9 +25,7 @@ class EmployeeController extends Controller
 
         $employees = $query->get();
 
-    
 
-         // Get a list of departments
         $departments = Department::all();
 
         return view('employee.index')->with([
@@ -37,7 +36,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-         // Get a list of departments
+        
          $departments = Department::all();
 
 
@@ -49,25 +48,20 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'department_id' => 'required',
-            'role' => 'required',
-            'employee_number' => 'required|unique:employee_numbers,number',
-        ]);
+        $lastEmployee = Employee::orderBy('id', 'desc')->first();
+        $newId = $lastEmployee ? $lastEmployee->id + 1 : 1;
 
-        $employeeNumber = new EmployeeNumber($request->year, $request->department_id, $request->unique_number);
-
-        $employee = new Employee([
-            'name' => $request->name,
-            'department_id' => $request->department_id,
-            'role' => $request->role,
-            'number' => $employeeNumber
-        ]);
-
+        $employee = new Employee();
+        $employeeNumber = new EmployeeNumber($request->join_year,$request->department,str_pad($newId, 4, '0', STR_PAD_LEFT));
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->phone_number = $request->phone_number;
+        $employee->password = $request->password;
+        $employee->department_id = $request->department;
+        $employee->employee_number = (string)$employeeNumber;
         $employee->save();
-
-        return redirect()->route('employees.index');
+    
+        return redirect()->route('employee.index');
         
 
     }
